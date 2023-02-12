@@ -49,4 +49,6 @@ app.get("/", async (req, res) => {
 
 app.use(express.static(path.join(__dirname)));
 
-app.listen(process.env.PORT || DEFAULT_PORT);
+app.set('port', process.env.PORT || DEFAULT_PORT);
+
+app.listen(app.get('port'), () => console.log(`Server listening on port ${app.get('port')}...`));
