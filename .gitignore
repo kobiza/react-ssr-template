@@ -1,0 +1,29 @@
+### Operating systems ###
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+### Regular dev ###
+node_modules
+npm-debug.log
+.idea
+.vscode
+*.iml
+dist
+byocDist
+
+### react-templates generated file ###
+*.rt.js
+*.json.jssd
+
+### yarn ###
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
