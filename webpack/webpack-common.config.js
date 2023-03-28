@@ -1,31 +1,22 @@
-const path = require('path');
-const CopyPlugin = require('copy-webpack-plugin')
+const WebpackBar = require('webpackbar');
+const path = require("path");
 
 const isProduction = process.env.NODE_ENV == 'production';
 
-const SRC = path.resolve(__dirname, 'src')
-const DIST = path.resolve(__dirname, 'dist')
+const SRC = path.resolve(__dirname, '../src')
+const DIST = path.resolve(__dirname, '../dist')
 
 const config = {
-    target: 'node',
-    entry: {
-        'client': path.join(SRC, 'client.js'),
-        'server': path.join(SRC, 'server.js'),
-    },
-    plugins: [
-        new CopyPlugin({
-            patterns: [
-                { from: "index.html", to: "index.html" },
-            ],
-        }),
-    ],
     output: {
-        path: DIST,
+        path: DIST
+    },
+    resolve: {
+        extensions: ['.js', '.jsx'],
     },
     module: {
         rules: [
             {
-                test: /\.(js|jsx|mjs)$/i,
+                test: /\.(js|jsx)$/i,
                 loader: 'babel-loader',
                 include: [SRC],
                 options: {
@@ -39,12 +30,12 @@ const config = {
             },
         ],
     },
-    resolve: {
-        extensions: ['', '.js', '.jsx', '.mjs'],
-    },
+    plugins: [
+        new WebpackBar(),
+    ],
 };
 
-module.exports = () => {
+const getConfig = () => {
     if (isProduction) {
         config.mode = 'production';
     } else {
@@ -53,3 +44,5 @@ module.exports = () => {
     }
     return config;
 };
+
+module.exports = getConfig()
